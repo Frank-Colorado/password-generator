@@ -134,7 +134,9 @@ function randomPasswordGenerator(array, amount) {
 // It has 0 arguments
 // Does: It will call the 'askPasswordLength' function and set the value to a variable called 'passwordLength'
 //       It will then initiate a series of confirmation prompts. The 'createArray' function is then called and the values of the confirmation prompts will be used as arguments for the function.
-//       It will then call the function randomPasswordGenerator which will use the global array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
+//       It will then initiate the criteriaCheck confirmation prompt. If this returns a truthy value then It will call the function randomPasswordGenerator which will use the global array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
+//       If this returns a truthy value then It will call the function randomPasswordGenerator which will use the global array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
+//       If this returns a falsey value then it will set the global array 'passwordArray' to [] and then recall the 'generatePassword' function and return its value.
 //       It will then turn the returned array into a string with no spacing and store the value in a variable called 'randomPassword'.
 //       It will then return the variable 'randomPassword' to where the function was called.
 function generatePassword() {
