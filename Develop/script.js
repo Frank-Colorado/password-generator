@@ -1,5 +1,4 @@
 // Assignment code here
-
 const passwordCharacters = {
   lowerCaseLetters: [
     "a",
@@ -143,6 +142,12 @@ function generatePassword() {
   );
 
   console.log(randomPasswordArray);
+
+  randomPassword = randomPasswordArray.join("");
+
+  console.log(randomPassword);
+
+  return randomPassword;
 }
 
 // Get references to the #generate element
@@ -151,11 +156,15 @@ const generateBtn = document.querySelector("#generate");
 //console.log(passwordCharacters);
 
 // Write password to the #password input
+let passwordText = document.querySelector("#password");
 function writePassword() {
-  let password = generatePassword();
-  let passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  if (passwordText.value === "") {
+    let password = generatePassword();
+    passwordText.value = password;
+  } else {
+    passwordText.value = "";
+    writePassword();
+  }
 }
 
 // Add event listener to generate button
