@@ -3,6 +3,7 @@
 // This is an object called passwordCharacters
 // It has 4 keys which contain an array as the value
 // These keys will be used to create a random password
+
 const passwordCharacters = {
   lowerCaseLetters: [
     "a",
@@ -93,8 +94,7 @@ function askPasswordLength() {
   );
   if (response < 8 || response > 128) {
     alert("Your password must be longer than 8 characters but less than 128!");
-    let newResponse = askPasswordLength();
-    return newResponse;
+    return askPasswordLength();
   } else {
     return response;
   }
@@ -102,7 +102,7 @@ function askPasswordLength() {
 
 // This is an empty array called 'passwordArray'
 // This array will be filled throughout the 'generatePassword' according to the criteria of the users input
-const passwordArray = [];
+let passwordArray = [];
 
 // This is a function called 'createArray'
 // It has 2 arguments called 'response' and 'characters'
@@ -158,10 +158,18 @@ function generatePassword() {
   );
   createArray(responseSpecialCharacters, passwordCharacters.specialCharacters);
 
-  let randomPasswordArray = randomPasswordGenerator(
-    passwordArray,
-    passwordLength
+  const criteriaCheck = confirm(
+    "Are you sure about all the criteria for your password?"
   );
+  if (criteriaCheck) {
+    randomPasswordArray = randomPasswordGenerator(
+      passwordArray,
+      passwordLength
+    );
+  } else {
+    passwordArray = [];
+    return generatePassword();
+  }
 
   console.log(randomPasswordArray);
   randomPassword = randomPasswordArray.join("");
