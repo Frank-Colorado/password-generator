@@ -1,9 +1,6 @@
-// Assignment code here
-
 // This is an object called passwordCharacters
 // It has 4 keys which contain an array as the value
 // These keys will be used to create a random password
-
 const passwordCharacters = {
   lowerCaseLetters: [
     "a",
@@ -196,7 +193,7 @@ function writePassword() {
     passwordText.value = password;
   } else {
     passwordText.value = "";
-    writePassword();
+    return writePassword();
   }
 }
 
