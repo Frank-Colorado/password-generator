@@ -97,7 +97,9 @@ const passwordArray = [];
 
 function createArray(response, characters) {
   if (response) {
-    passwordArray.push(characters);
+    for (let i = 0; i < characters.length; i++) {
+      passwordArray.push(characters[i]);
+    }
   }
 }
 
