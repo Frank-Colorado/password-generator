@@ -93,8 +93,36 @@ function askPasswordLength() {
   }
 }
 
-function passwordCriteriaPrompt() {
+const passwordArray = [];
+
+function createArray(response, characters) {
+  if (response) {
+    passwordArray.push(characters);
+  }
+}
+
+function generatePassword() {
   const passwordLength = askPasswordLength();
+
+  const responseUppercase = confirm(
+    "Do you want uppercase letters in your password?"
+  );
+  createArray(responseUppercase, passwordCharacters.upperCaseLetters);
+
+  const responseLowercase = confirm(
+    "Do you want lowercase letters in your password?"
+  );
+  createArray(responseLowercase, passwordCharacters.lowerCaseLetters);
+
+  const responseNumerals = confirm("Do you want numerals in your password?");
+  createArray(responseNumerals, passwordCharacters.numerals);
+
+  const responseSpecialCharacters = confirm(
+    "Do you want special characters in your password?"
+  );
+  createArray(responseSpecialCharacters, passwordCharacters.specialCharacters);
+
+  console.log(passwordArray);
 }
 
 // Get references to the #generate element
@@ -102,11 +130,9 @@ const generateBtn = document.querySelector("#generate");
 
 //console.log(passwordCharacters);
 
-function generatePassword() {}
 // Write password to the #password input
 function writePassword() {
-  let password = passwordCriteriaPrompt();
-
+  let password = generatePassword();
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
