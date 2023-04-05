@@ -86,7 +86,8 @@ function askPasswordLength() {
   );
   if (response < 8 || response > 128) {
     alert("Your password must be longer than 8 characters but less than 128!");
-    askPasswordLength();
+    let newResponse = askPasswordLength();
+    return newResponse;
   } else {
     console.log(response);
     return response;
