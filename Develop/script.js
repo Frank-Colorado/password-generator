@@ -1,6 +1,4 @@
 // Assignment code here
-
-// Get references to the #generate element
 const passwordCharacters = {
   lowerCaseLetters: [
     "a",
@@ -81,12 +79,34 @@ const passwordCharacters = {
     " ? ",
   ],
 };
+
+function askPasswordLength() {
+  let response = Number(
+    prompt("How many characters should your password be? (8-128 characters)")
+  );
+  if (response < 8 || response > 128) {
+    alert("Your password must be longer than 8 characters but less than 128!");
+    askPasswordLength();
+  } else {
+    console.log(response);
+    return response;
+  }
+}
+
+function passwordCriteriaPrompt() {
+  const passwordLength = askPasswordLength();
+}
+
+// Get references to the #generate element
+const generateBtn = document.querySelector("#generate");
+
 //console.log(passwordCharacters);
 
+function generatePassword() {}
 // Write password to the #password input
 function writePassword() {
-  let passwordCriteria = passwordCriteriaPrompt();
-  let password = generatePassword();
+  let password = passwordCriteriaPrompt();
+
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
