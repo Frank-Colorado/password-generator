@@ -1,4 +1,5 @@
 // Assignment code here
+
 const passwordCharacters = {
   lowerCaseLetters: [
     "a",
@@ -103,6 +104,16 @@ function createArray(response, characters) {
   }
 }
 
+function randomPasswordGenerator(array, amount) {
+  let generatedPassword = [];
+  for (let i = 0; i < amount; i++) {
+    let randomCharacter = array[Math.floor(Math.random() * array.length)];
+    generatedPassword.push(randomCharacter);
+  }
+  passwordArray.length = 0;
+  return generatedPassword;
+}
+
 function generatePassword() {
   const passwordLength = askPasswordLength();
 
@@ -125,6 +136,13 @@ function generatePassword() {
   createArray(responseSpecialCharacters, passwordCharacters.specialCharacters);
 
   console.log(passwordArray);
+
+  let randomPasswordArray = randomPasswordGenerator(
+    passwordArray,
+    passwordLength
+  );
+
+  console.log(randomPasswordArray);
 }
 
 // Get references to the #generate element
