@@ -170,7 +170,7 @@ function generatePassword() {
     return generatePassword();
   }
 
-  console.log(randomPasswordArray);
+  //console.log(randomPasswordArray);
   randomPassword = randomPasswordArray.join("");
 
   return randomPassword;
