@@ -62,23 +62,23 @@ const passwordCharacters = {
   numerals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 
   specialCharacters: [
-    " `",
-    " !",
-    " @",
-    " #",
-    " $",
-    " %",
-    " ^",
-    " &",
-    " *",
-    " -",
-    " _",
-    " +",
-    " =",
-    " <",
-    " >",
-    " . ",
-    " ? ",
+    "`",
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "-",
+    "_",
+    "+",
+    "=",
+    "<",
+    ">",
+    ".",
+    "?",
   ],
 };
 // This is a function called 'askPasswordLength'
@@ -97,18 +97,14 @@ function askPasswordLength() {
   }
 }
 
-// This is an empty array called 'passwordArray'
-// This array will be filled throughout the 'generatePassword' according to the criteria of the users input
-let passwordArray = [];
-
 // This is a function called 'createArray'
 // It has 2 arguments called 'response' and 'characters'
 // Does: If the value of the argument 'response' is truthy then the function grabs the indicated key from the 'passwordCharacters' object and fills the 'passwordArray' array.
 //       If the 'response' is falsy then nothing is returned
-function createArray(response, characters) {
+function createArray(array, response, characters) {
   if (response) {
     for (let i = 0; i < characters.length; i++) {
-      passwordArray.push(characters[i]);
+      array.push(characters[i]);
     }
   }
 }
@@ -123,7 +119,6 @@ function randomPasswordGenerator(array, amount) {
     let randomCharacter = array[Math.floor(Math.random() * array.length)];
     generatedPassword.push(randomCharacter);
   }
-  passwordArray.length = 0;
   return generatedPassword;
 }
 
@@ -137,25 +132,39 @@ function randomPasswordGenerator(array, amount) {
 //       It will then turn the returned array into a string with no spacing and store the value in a variable called 'randomPassword'.
 //       It will then return the variable 'randomPassword' to where the function was called.
 function generatePassword() {
+  let passwordArray = [];
+
   const passwordLength = askPasswordLength();
 
   const responseUppercase = confirm(
     "Do you want uppercase letters in your password?"
   );
-  createArray(responseUppercase, passwordCharacters.upperCaseLetters);
+  createArray(
+    passwordArray,
+    responseUppercase,
+    passwordCharacters.upperCaseLetters
+  );
 
   const responseLowercase = confirm(
     "Do you want lowercase letters in your password?"
   );
-  createArray(responseLowercase, passwordCharacters.lowerCaseLetters);
+  createArray(
+    passwordArray,
+    responseLowercase,
+    passwordCharacters.lowerCaseLetters
+  );
 
   const responseNumerals = confirm("Do you want numerals in your password?");
-  createArray(responseNumerals, passwordCharacters.numerals);
+  createArray(passwordArray, responseNumerals, passwordCharacters.numerals);
 
   const responseSpecialCharacters = confirm(
     "Do you want special characters in your password?"
   );
-  createArray(responseSpecialCharacters, passwordCharacters.specialCharacters);
+  createArray(
+    passwordArray,
+    responseSpecialCharacters,
+    passwordCharacters.specialCharacters
+  );
 
   const criteriaCheck = confirm(
     "Are you sure about all the criteria for your password?"
@@ -166,7 +175,6 @@ function generatePassword() {
       passwordLength
     );
   } else {
-    passwordArray = [];
     return generatePassword();
   }
 
@@ -188,13 +196,8 @@ let passwordText = document.querySelector("#password");
 //       The returned value will be stored in a variable called 'password'. The value of the 'passwordText' variable will then be set to the value of 'password'
 //       If the value of the variable 'passwordText' is not '' then its value is set to '' and the function is called again.
 function writePassword() {
-  if (passwordText.value === "") {
-    let password = generatePassword();
-    passwordText.value = password;
-  } else {
-    passwordText.value = "";
-    return writePassword();
-  }
+  let password = generatePassword();
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
