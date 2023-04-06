@@ -10,7 +10,7 @@ This web application is a password generator. It will generated a password based
 
 ## Website URL
 
-https://github.com/Frank-Colorado/password-generator
+https://frank-colorado.github.io/password-generator/
 
 ## Installation
 
