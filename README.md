@@ -6,6 +6,8 @@ This web application is a password generator. It will generated a password based
 
 ## Visuals
 
+![image](https://user-images.githubusercontent.com/123683792/230255245-fdd38d59-f67c-43db-b10a-ad7c8a6dbcd4.png)
+
 ## Website URL
 
 https://github.com/Frank-Colorado/password-generator
