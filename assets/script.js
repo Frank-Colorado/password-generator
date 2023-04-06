@@ -98,8 +98,8 @@ function askPasswordLength() {
 }
 
 // This is a function called 'createArray'
-// It has 2 arguments called 'response' and 'characters'
-// Does: If the value of the argument 'response' is truthy then the function grabs the indicated key from the 'passwordCharacters' object and fills the 'passwordArray' array.
+// It has 3 arguments called 'array', 'response', and 'characters'
+// Does: If the value of the argument 'response' is truthy then the function grabs the indicated key from the 'passwordCharacters' object and fills an array supplied by the 'array' argument.
 //       If the 'response' is falsy then nothing is returned
 function createArray(array, response, characters) {
   if (response) {
@@ -126,9 +126,9 @@ function randomPasswordGenerator(array, amount) {
 // It has 0 arguments
 // Does: It will call the 'askPasswordLength' function and set the value to a variable called 'passwordLength'
 //       It will then initiate a series of confirmation prompts. The 'createArray' function is then called and the values of the confirmation prompts will be used as arguments for the function.
-//       It will then initiate the criteriaCheck confirmation prompt. If this returns a truthy value then It will call the function randomPasswordGenerator which will use the global array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
-//       If this returns a truthy value then It will call the function randomPasswordGenerator which will use the global array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
-//       If this returns a falsey value then it will set the global array 'passwordArray' to [] and then recall the 'generatePassword' function and return its value.
+//       It will then initiate the criteriaCheck confirmation prompt. If this returns a truthy value then It will call the function randomPasswordGenerator which will use the array 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
+//       If this returns a truthy value then It will call the function randomPasswordGenerator which will use the variable 'passwordArray' and the variable 'passwordLength' as arguments. The returned value will be stored in a variable called 'randomPasswordArray'
+//       If this returns a falsey value then it will recall the 'generatePassword' function and return its value.
 //       It will then turn the returned array into a string with no spacing and store the value in a variable called 'randomPassword'.
 //       It will then return the variable 'randomPassword' to where the function was called.
 function generatePassword() {
@@ -192,9 +192,8 @@ let passwordText = document.querySelector("#password");
 
 // This is a function called 'writePassword'
 // It has 0 arguments
-// Does: This function will be called when generateBtn is clicked. If the value of the variable 'passwordText' is '' then the 'generatePassword' function will be called.
+// Does: This function will be called when generateBtn is clicked. The 'generatePassword' function will then be called.
 //       The returned value will be stored in a variable called 'password'. The value of the 'passwordText' variable will then be set to the value of 'password'
-//       If the value of the variable 'passwordText' is not '' then its value is set to '' and the function is called again.
 function writePassword() {
   let password = generatePassword();
   passwordText.value = password;
